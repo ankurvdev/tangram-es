@@ -3,9 +3,10 @@ project(tangram-core)
 # Build core library dependencies.
 find_package(ZLIB REQUIRED)
 
-if (TANGRAM_USE_VCPKG)
+#if (TANGRAM_USE_VCPKG)
   find_package(yaml-cpp CONFIG REQUIRED)
-endif()
+  find_package(double-conversion CONFIG REQUIRED)
+#endif()
 
 add_subdirectory(deps)
 
@@ -225,7 +226,6 @@ target_include_directories(tangram-core
   deps/geojson-vt-cpp/geometry.hpp/include
   deps/geojson-vt-cpp/geojson.hpp/include
   deps/geojson-vt-cpp/include
-  deps/double-conversion/include
 )
 
 if (WIN32)
@@ -234,14 +234,14 @@ endif()
 
 # Link core library dependencies.
 target_link_libraries(tangram-core
-  PRIVATE
+  PUBLIC 
   glm
   css-color-parser-cpp
   yaml-cpp
   alfons
-  double-conversion
   miniz
   ZLIB::ZLIB
+  double-conversion::double-conversion
 )
 
 # Add JavaScript implementation.

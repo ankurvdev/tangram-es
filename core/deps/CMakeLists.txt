@@ -98,8 +98,9 @@ endif()
 
 ## double-conversion ##
 #######################
-add_subdirectory(double-conversion)
-
+if(NOT TANGRAM_USE_VCPKG)
+  #add_subdirectory(double-conversion)
+endif()
 
 ## Prebuild JavascriptCore ##
 #############################
